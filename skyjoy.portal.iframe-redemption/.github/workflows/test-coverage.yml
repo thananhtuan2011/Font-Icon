@@ -1,0 +1,78 @@
+name: Test Coverage Summary
+on:
+    # push:
+    #     branches: [deploy/dev, deploy/stg, uat, master]
+    pull_request:
+        branches: [master]
+
+jobs:
+    push:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            packages: write
+            pull-requests: write
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  fetch-depth: '0'
+            - name: Use Node.js 18
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 18
+                  registry-url: https://npm.pkg.github.com/
+            - name: Install dependencies global
+              run: sudo npm install -g @angular/cli
+            - name: Install dependencies
+              run: yarn install
+
+            - name: Run tests with coverage
+              run: npm run test-coverage
+
+            - name: Comment on PR if tests fail
+              if: ${{ failure() }}
+              uses: actions/github-script@v6
+              with:
+                script: |
+                  github.rest.issues.createComment({
+                    issue_number: context.issue.number,
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    body: ':x: **The tests did not pass. Please check the test results.** :x:'
+                  })
+
+            - name: Exit workflow on failure
+              if: failure() # Run this step only if previous steps failed
+              run: exit 1 # Exit with code 1 to indicate failure
+
+            # - name: Coverage Diff
+            #   run: npm run coverage-md
+
+            - name: Code Coverage Summary Report
+              uses: irongut/CodeCoverageSummary@v1.3.0
+              with:
+                  filename: 'coverage/cobertura-coverage.xml'
+                  badge: true
+                  format: 'markdown'
+                  output: 'both'
+
+            - name: Add Coverage PR Comment
+              uses: marocchino/sticky-pull-request-comment@v2
+              if: github.event_name == 'pull_request'
+              with:
+                  recreate: true
+                  path: code-coverage-results.md
+
+            - name: Write to Job Summary
+              run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
+
+            # - name: Push changes
+            #   run: |
+            #       # git config --global user.email "gitactions@galaxyjoy.vn"
+            #       # git config --global user.name "Git Actions"
+            #       # echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}\n@galaxy-joy:registry=https://npm.pkg.github.com/" > .npmrc
+            #       git add .
+            #       git commit -m "Update README.md from workflow"
+            #       git push origin HEAD:$GITHUB_REF
+            #   env:
+            #       NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

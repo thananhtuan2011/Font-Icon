@@ -1,0 +1,104 @@
+.icon-page {
+  min-height: 100%;
+  background: rgb(224 226 232);
+
+  &-wrapper {
+    max-width: 840px;
+    margin: auto;
+  }
+
+  &-header::ng-deep {
+
+    .ant-affix {
+      z-index: 100;
+      background: #fff;
+      box-shadow: 0px 8px 20px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .icon-page-header-wrapper {
+      max-width: 840px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .ant-slider-track {
+      background: #FFAA00;
+    }
+
+    .ant-slider-handle:hover,
+    .ant-slider-handle:focus,
+    .ant-slider-handle {
+      border-color: #FFAA00;
+    }
+
+    .search-icon {
+
+      &:focus,
+      &:hover,
+      &.ant-input-affix-wrapper-focused {
+        border-color: #FFAA00;
+        outline: none;
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+.icon-listing {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-auto-rows: 1em * 7.5;
+  gap: 1em;
+
+
+  .icon-wrapper {
+    width: 100%;
+    background: #fff;
+    border-radius: 0.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    // box-shadow: 0px 8px 20px 4px rgba(0, 0, 0, 0.1);
+
+
+    span {
+      // background: rgb(224 226 232);
+      display: flex;
+      border-radius: 2px;
+    }
+
+    i {
+      color: #FFAA00;
+      // background: linear-gradient(338.51deg, #FF8744 28.93%, #FFE710 164.48%);
+      // -webkit-background-clip: text;
+      // background-clip: text;
+      // -webkit-text-fill-color: transparent;
+    }
+
+    .copy-btn {
+      position: absolute;
+      right: -6px;
+      top: -6px;
+      z-index: 99;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+      border-radius: 4px;
+      border: 1px solid #8d8d8d;
+      height: fit-content;
+
+      i {
+        color: #8d8d8d;
+        background: transparent;
+        -webkit-background-clip: unset;
+        background-clip: unset;
+        -webkit-text-fill-color: unset;
+      }
+    }
+  }
+}

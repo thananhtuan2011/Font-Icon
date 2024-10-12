@@ -1,0 +1,62 @@
+<div class="icon-page">
+  <nz-affix [nzOffsetTop]="0" class="icon-page-header bg-white h-max">
+    <div class="icon-page-header-wrapper bg-white h-max p-[20px]">
+      <div class="flex gap-[4px]">
+        <span class="text-[20px] font-[600]">Font Color:</span>
+        <nz-color-picker [nzValue]="fontColor" (nzOnChange)="onFontColorChange($event)"></nz-color-picker>
+      </div>
+      <div class="flex gap-[4px]">
+        <div class="text-[20px] font-[600] min-w-[155px]">Font Size({{ fontSize }}px):</div>
+        <nz-slider class="w-[100%]" [(ngModel)]="fontSize" [nzMin]="24"></nz-slider>
+      </div>
+      <div>
+        <span class="text-[20px] font-[600]"> Total icons: {{ totalIcons }} </span>
+      </div>
+      <nz-input-group class="search-icon rounded-[6px] p-[10px]" [nzSuffix]="suffixIconSearch">
+        <input [(ngModel)]="searchValue" type="text" nz-input placeholder="Search icon" (ngModelChange)="onSearch()" />
+      </nz-input-group>
+      <ng-template #suffixIconSearch>
+        <span nz-icon nzType="search"></span>
+      </ng-template>
+    </div>
+  </nz-affix>
+  <div class="icon-page-wrapper">
+    <ng-container
+      *ngTemplateOutlet="iconList; context: { $implicit: 'Font Icon', data: fontIconsClass() }"
+    ></ng-container>
+
+    <ng-container
+      *ngTemplateOutlet="iconList; context: { $implicit: 'Font Outline Icon', data: fontOutlineIconsClass() }"
+    ></ng-container>
+
+    <ng-container
+      *ngTemplateOutlet="iconList; context: { $implicit: 'Custom Icon', data: skyjoySvgIcons(), isCustom: true }"
+    ></ng-container>
+  </div>
+</div>
+
+<ng-template #iconList let-title let-data="data" let-isCustom="isCustom">
+  <h3 class="text-[20px] pt-[26px] font-[600]">{{ title }} ({{ data.length }})</h3>
+  <div class="icon-listing">
+    <ng-container *ngFor="let item of data; trackBy: trackByIcons">
+      <div class="icon-wrapper">
+        <button
+          class="copy-btn"
+          nz-button
+          nz-tooltip="Copy code"
+          (click)="onCopyCode(isCustom ? item.name : item, !!isCustom)"
+        >
+          <i class="sj-ic-outline sj-ic-copy-right text-[14px]"> </i>
+        </button>
+        <span>
+          <ng-container *ngIf="isCustom; else elseTemplate">
+            <i nz-icon [nzType]="item.name" [style]="'font-size: ' + fontSize + 'px'"></i>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <i class="{{ item }}" [style]="'font-size: ' + fontSize + 'px; color: ' + fontColor"> </i>
+          </ng-template>
+        </span>
+      </div>
+    </ng-container>
+  </div>
+</ng-template>

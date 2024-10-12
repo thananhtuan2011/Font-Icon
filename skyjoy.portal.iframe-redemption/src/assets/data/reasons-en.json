@@ -1,0 +1,38 @@
+[
+  {
+    "title": "I suspect my account has been stolen",
+    "navigateTo": "compromised-account",
+    "openLink": "",
+    "isShowActionIcons": true
+  },
+  {
+    "title": "I'm concerned about the security of my personal information",
+    "navigateTo": "privacy-policy",
+    "openLink": "",
+    "isShowActionIcons": true
+  },
+  {
+    "title": "I can't edit my personal information",
+    "navigateTo": "edit-information",
+    "openLink": "",
+    "isShowActionIcons": true
+  },
+  {
+    "title": "I find the membership program unattractive",
+    "navigateTo": "",
+    "openLink": "https://skyjoy.vietjetair.com/",
+    "isShowActionIcons": true
+  },
+  {
+    "title": "I have created another SkyJoy account",
+    "navigateTo": "feedback",
+    "openLink": "",
+    "isShowActionIcons": true
+  },
+  {
+    "title": "Other reasons",
+    "navigateTo": "feedback",
+    "openLink": "",
+    "isShowActionIcons": true
+  }
+]

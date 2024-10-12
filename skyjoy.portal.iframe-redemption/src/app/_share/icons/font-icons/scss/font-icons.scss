@@ -1,0 +1,82 @@
+@import './variables-solid';
+@import './variables-outline';
+
+:root {
+  --sj-ic-solid-variables: #{$sj-ic-solid-variables};
+  --sj-ic-outline-variables: #{$sj-ic-outline-variables};
+  --sj-ic-solid-font-family: #{$sj-ic-font-family};
+  --sj-ic-outline-font-family: #{$sj-ic-outline-font-family};
+}
+
+@mixin add-icon-class($class, $content) {
+  &.#{$class} {
+    &:before {
+      content: $content;
+    }
+  }
+}
+
+@font-face {
+  font-family: '#{$sj-ic-font-family}';
+  //IE9 Compat Modes
+  src: url('#{$sj-ic-font-path}/#{$sj-ic-font-family}.eot');
+  // IE6-IE8
+  src: url('#{$sj-ic-font-path}/#{$sj-ic-font-family}.eot#iefix') format('embedded-opentype'),
+  //Safari, Android, iOS
+  url('#{$sj-ic-font-path}/#{$sj-ic-font-family}.ttf') format('truetype'),
+  //Pretty Modern Browsers
+  url('#{$sj-ic-font-path}/#{$sj-ic-font-family}.woff') format('woff'),
+  //Legacy iOS
+  url('#{$sj-ic-font-path}/#{$sj-ic-font-family}.svg##{$sj-ic-font-family}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: '#{$sj-ic-outline-font-family}';
+  src: url('#{$sj-ic-outline-font-path}/#{$sj-ic-outline-font-family}.eot');
+  src: url('#{$sj-ic-outline-font-path}/#{$sj-ic-outline-font-family}.eot#iefix') format('embedded-opentype'),
+  url('#{$sj-ic-outline-font-path}/#{$sj-ic-outline-font-family}.ttf') format('truetype'),
+  url('#{$sj-ic-outline-font-path}/#{$sj-ic-outline-font-family}.woff') format('woff'),
+  url('#{$sj-ic-outline-font-path}/#{$sj-ic-outline-font-family}.svg##{$sj-ic-outline-font-family}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+i.sj-ic {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: '#{$sj-ic-font-family}' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @each $name, $value in $sj-ic-solid-variables {
+    @include add-icon-class($name, $value);
+  }
+}
+
+i.sj-ic-outline {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: '#{$sj-ic-outline-font-family}' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @each $name, $value in $sj-ic-outline-variables {
+    @include add-icon-class($name, $value );
+  }
+}

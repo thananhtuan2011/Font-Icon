@@ -1,0 +1,10 @@
+<p>test works!</p>
+<i class="icon-Shape" style="color: red; font-size: 33px"></i>
+<i class="icon-test" style="color: red; font-size: 33px">
+  <span class="path1"></span>
+  <span class="path2"></span>
+</i>
+{{ checked() | json }}
+<div *ngFor="let item of reason(); trackBy: trackByReason">
+  <span>{{ item["title"] || "" }}</span>
+</div>

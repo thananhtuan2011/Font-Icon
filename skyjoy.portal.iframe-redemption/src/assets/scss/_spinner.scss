@@ -1,0 +1,166 @@
+$primary: #EACD1A;
+$size: 32px;
+$size-gap: 8px;
+$size-small: 16px;
+$size-gap-small: 4px;
+
+[data-spinner='container'] {
+	position: relative;
+	cursor: not-allowed !important;
+	pointer-events: none !important;
+	&.data-spinner {
+		&__fixed {
+			overflow: hidden;
+			[data-spinner='loader'] {
+				position: fixed;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				pointer-events: none;
+			}
+		}
+		&__top {
+			[data-spinner='loader'] {
+				&:before {
+					top: 50px;
+				}
+			}
+		}
+	}
+}
+
+[data-spinner='loader'] {
+	position: absolute;
+	background-color: rgba(255, 255, 255, .8);
+	z-index: 9999;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	cursor: not-allowed !important;
+	pointer-events: none !important;
+
+  [data-spinner-item='loader']{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    //border: 2px solid $primary-lighter;
+    background-color: transparent;
+    //border-right-color: $primary;
+    width: $size;
+    height: $size;
+    //animation: spiner 1s linear infinite;
+    z-index: 1040;
+    margin-top: -1rem;
+    margin-left: -1rem;
+
+    display: inline-block;
+    //position: relative;
+    border: 2px solid;
+    border-color:$primary $primary transparent transparent;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    &::after,
+    &::before {
+      content: '';
+      box-sizing: border-box;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      border: 2px solid;
+      border-color: transparent transparent $primary $primary;
+      width: calc($size - $size-gap);
+      height: calc($size - $size-gap);
+      border-radius: 50%;
+      animation: rotationBack 0.5s linear infinite;
+      transform-origin: center center;
+    }
+    &:before {
+      width: calc($size - ($size-gap*2));
+      height: calc($size - ($size-gap*2));
+      border-color: $primary $primary transparent transparent;
+      animation: rotation 1.5s linear infinite;
+    }
+  }
+}
+
+[data-spinner-small='loader'] {
+	position: absolute;
+	background-color: rgba(255, 255, 255, .8);
+	z-index: 9999;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	cursor: not-allowed !important;
+	pointer-events: none !important;
+
+  [data-spinner-item='loader']{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    //border: 2px solid $primary-lighter;
+    background-color: transparent;
+    //border-right-color: $primary;
+    width: $size-small;
+    height: $size-small;
+    //animation: spiner 1s linear infinite;
+    z-index: 1040;
+    margin-top: -1rem;
+    margin-left: -1rem;
+
+    display: inline-block;
+    //position: relative;
+    border: 1px solid;
+    border-color:$primary $primary transparent transparent;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    &::after,
+    &::before {
+      content: '';
+      box-sizing: border-box;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      border: 1px solid;
+      border-color: transparent transparent $primary $primary;
+      width: calc($size-small - $size-gap-small);
+      height: calc($size-small - $size-gap-small);
+      border-radius: 50%;
+      animation: rotationBack 0.5s linear infinite;
+      transform-origin: center center;
+    }
+    &:before {
+      width: calc($size-small - ($size-gap-small * 2));
+      height: calc($size-small - ($size-gap-small * 2));
+      border-color: $primary $primary transparent transparent;
+      animation: rotation 1.5s linear infinite;
+    }
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotationBack {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Tôi nghi ngờ tài khoản bị đánh cắp",
+    "navigateTo": "compromised-account",
+    "openLink": "",
+    "isShowActionIcons": true
+  },
+  {
+    "title": "Tôi lo lắng về bảo mật thông tin cá nhân",
+    "navigateTo": "privacy-policy",
+    "openLink": "",
+    "isShowActionIcons": true
+  },
+  {
+    "title": "Tôi không thể chỉnh sửa thông tin cá nhân",
+    "navigateTo": "edit-information",
+    "openLink": "",
+    "isShowActionIcons": true
+  },
+  {
+    "title": "Tôi cảm thấy chương trình hội viên không hấp dẫn",
+    "navigateTo": "",
+    "openLink": "https://skyjoy.vietjetair.com/",
+    "isShowActionIcons": true
+  },
+  {
+    "title": "Tôi đã có một tài khoản SkyJoy khác",
+    "navigateTo": "feedback",
+    "openLink": "",
+    "isShowActionIcons": true
+  },
+  {
+    "title": "Lý do khác",
+    "navigateTo": "feedback",
+    "openLink": "",
+    "isShowActionIcons": true
+  }
+]
